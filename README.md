@@ -553,7 +553,7 @@ res:
 
 ```json
 {
-  "success": true
+  "success": true,
   "token": "token_str"
 }
 ```
