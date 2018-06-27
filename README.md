@@ -1,27 +1,559 @@
-# Clubpp
+# Clubpp API
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.5.
+## User
 
-## Development server
+### Add user(register)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+POST /api/users
 
-## Code scaffolding
+req:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```json
+{
+  "username": "rabbit",
+  "name": "syf",
+  "password": "123",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015"
+}
+```
 
-## Build
+res:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+```json
+{
+  "user_id": "uuid",
+  "username": "rabbit",
+  "name": "syf",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "avatar": "default_avatar_path",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015",
+}
+```
 
-## Running unit tests
+### Update user
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+PUT /api/users/:user_id
 
-## Running end-to-end tests
+req:
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+```json
+{
+  "username": "rabbit",
+  "name": "syf",
+  "password": "123",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015"
+}
+```
 
-## Further help
+res:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+```json
+{
+  "user_id": "uuid",
+  "username": "rabbit",
+  "name": "syf",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015"
+}
+```
+
+### Read user
+
+GET /api/users?username=rabbit
+
+res:
+
+```json
+{
+  "user_id": "uuid",
+  "username": "rabbit",
+  "name": "syf",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015",
+  "club_ids": [
+    "uuid1",
+    "uuid2",
+    "uuid3"
+  ],
+  "request_ids": [
+    "uuid1",
+    "uuid2",
+    "uuid3"
+  ]
+}
+```
+
+GET /api/users
+
+res:
+
+```json
+[
+  {
+    "user_id": "uuid",
+    "username": "rabbit",
+    "name": "syf",
+    "email": "example@abc.com",
+    "day_of_birth": "1995-05-11",
+    "gender": true,
+    "academy": "软件学院",
+    "major": "软件工程",
+    "bio": "我很优秀。",
+    "phone": "15087186168",
+    "year_of_enrollment": "2015",
+    "club_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ],
+    "request_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ]
+  },
+  {
+    "user_id": "uuid",
+    "username": "rabbit",
+    "name": "syf",
+    "email": "example@abc.com",
+    "day_of_birth": "1995-05-11",
+    "gender": true,
+    "academy": "软件学院",
+    "major": "软件工程",
+    "bio": "我很优秀。",
+    "phone": "15087186168",
+    "year_of_enrollment": "2015",
+    "club_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ],
+    "request_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ]
+  }
+]
+```
+
+GET /api/users/:user_id
+
+res:
+
+```json
+{
+  "user_id": "uuid",
+  "username": "rabbit",
+  "name": "syf",
+  "email": "example@abc.com",
+  "day_of_birth": "1995-05-11",
+  "gender": true,
+  "academy": "软件学院",
+  "major": "软件工程",
+  "bio": "我很优秀。",
+  "phone": "15087186168",
+  "year_of_enrollment": "2015",
+  "club_ids": [
+    "uuid1",
+    "uuid2",
+    "uuid3"
+  ],
+  "request_ids": [
+    "uuid1",
+    "uuid2",
+    "uuid3"
+  ]
+}
+```
+
+## Club
+
+### Add
+
+POST /api/clubs
+
+req:
+
+```json
+{
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+}
+```
+
+res:
+
+```json
+{
+  "club_id": "uuid",
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+  "images": []
+}
+```
+
+### Delete club
+
+DELETE /api/clubs/:id
+
+res:
+
+```json
+{
+  "club_id": "uuid",
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+  "images": []
+}
+```
+
+### Update club
+
+PUT /api/clubs/:club_id
+
+req:
+
+```json
+{
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+}
+```
+
+res:
+
+```json
+{
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+}
+```
+
+### Read club
+
+GET /api/clubs
+
+res:
+
+```json
+[
+  {
+    "club_name": "xxx club",
+    "created_date": "2000-01-03",
+    "member_number": 123,
+    "club_bio": "这是一个社团。",
+    "tags": "a,b,c",
+    "addresses": "addr1,addr2,addr3",
+    "master_id": "uuid",
+    "images": [
+      {
+        "url": "url1",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      },
+      {
+        "url": "url2",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      },
+      {
+        "url": "url3",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      }
+    ],
+    "request_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ]
+  },
+  {
+    "club_name": "xxx club",
+    "created_date": "2000-01-03",
+    "member_number": 123,
+    "club_bio": "这是一个社团。",
+    "tags": "a,b,c",
+    "addresses": "addr1,addr2,addr3",
+    "master_id": "uuid",
+    "images": [
+      {
+        "url": "url1",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      },
+      {
+        "url": "url2",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      },
+      {
+        "url": "url3",
+        "club_id": "uuid",
+        "image_id": "uuid"
+      }
+    ],
+    "request_ids": [
+      "uuid1",
+      "uuid2",
+      "uuid3"
+    ]
+  }
+]
+```
+
+GET /api/clubs/:club_id
+
+res:
+
+```json
+{
+  "club_id": "uuid",
+  "club_name": "xxx club",
+  "created_date": "2000-01-03",
+  "member_number": 123,
+  "club_bio": "这是一个社团。",
+  "tags": "a,b,c",
+  "addresses": "addr1,addr2,addr3",
+  "master_id": "uuid",
+  "images": [
+    {
+      "url": "url1",
+      "club_id": "uuid",
+      "image_id": "uuin"
+    },
+    {
+      "url": "url2",
+      "club_id": "uuid",
+      "image_id": "uuin"
+    },
+    {
+      "url": "url3",
+      "club_id": "uuid",
+      "image_id": "uuin"
+    }
+  ],
+  "request_ids": [
+    "uuid1",
+    "uuid2",
+    "uuid3"
+  ]
+}
+```
+
+## Request
+
+### Add request
+
+POST /api/requests
+
+req:
+
+```json
+{
+  "user_id": "uuid",
+  "club_id": "uuid",
+  "extra": "Some thing else..."
+}
+```
+
+res:
+
+```json
+{
+  "request_id": "uuid",
+  "user_id": "uuid",
+  "club_id": "uuid",
+  "extra": "Some thing else...",
+  "time": "timestamp",
+  "is_read": false
+}
+```
+
+### Delete request
+
+DELETE /api/requests/:request_id
+
+res:
+
+```json
+{
+  "request_id": "uuid",
+  "user_id": "uuid",
+  "club_id": "uuid",
+  "extra": "Some thing else...",
+  "time": "timestamp",
+  "is_read": false
+}
+```
+
+### Update request
+
+pass
+
+### Read request
+
+GET /api/requests
+
+res:
+
+```json
+[
+  {
+    "request_id": "uuid",
+    "user_id": "uuid",
+    "club_id": "uuid",
+    "extra": "Some thing else...",
+    "time": "timestamp",
+    "is_read": false
+  },
+  {
+    "request_id": "uuid",
+    "user_id": "uuid",
+    "club_id": "uuid",
+    "extra": "Some thing else...",
+    "time": "timestamp",
+    "is_read": false
+  }
+]
+```
+
+GET /api/requests/:id
+
+res:
+
+```json
+{
+  "request_id": "uuid",
+  "user_id": "uuid",
+  "club_id": "uuid",
+  "extra": "Some thing else...",
+  "time": "timestamp",
+  "is_read": false
+}
+```
+
+## Image
+
+### Add image
+
+POST /api/images
+
+req:
+
+```json
+{
+  "club_id": "uuid"
+}
+```
+
+res:
+
+```json
+{
+  "image_id": "uuid",
+  "club_id": "uuid",
+  "url": "url1"
+}
+```
+
+### Delete image
+
+DELETE /api/images/:image_id
+
+res:
+
+```json
+{
+  "image_id": "uuid",
+  "club_id": "uuid",
+  "url": "url1"
+}
+```
+
+## Authentication and authorization
+
+### regiser
+
+POST /api/users
+
+### login
+
+POST /api/login
+
+req:
+
+```json
+{
+  "username": "rabbit",
+  "password": "123"
+}
+```
+
+res:
+
+```json
+{
+  "success": true
+  "token": "token_str"
+}
+```
