@@ -1,0 +1,43 @@
+<nz-layout class="layout">
+  <app-header></app-header>
+  <nz-layout>
+    <nz-sider style="background:#fff" [nzCollapsed]="!isCollapsed">
+      <nz-switch [nzSize]="'small'" [(ngModel)]="isCollapsed"></nz-switch>
+      <ul nz-menu [nzInlineCollapsed]="!isCollapsed" [nzMode]="'inline'" style="height:100%">
+        <li nz-submenu>
+          <span title><i class="anticon anticon-user"></i><span>User</span></span>
+          <ul>
+            <li nz-menu-item><a routerLink="/login">Login</a></li>
+            <li nz-menu-item><a routerLink="/register">Register</a></li>
+            <li nz-menu-item>option3</li>
+            <li nz-menu-item>option4</li>
+          </ul>
+        </li>
+        <li nz-submenu>
+          <span title><i class="anticon anticon-laptop"></i><span>subnav 2</span></span>
+          <ul>
+            <li nz-menu-item>option5</li>
+            <li nz-menu-item>option6</li>
+            <li nz-menu-item>option7</li>
+            <li nz-menu-item>option8</li>
+          </ul>
+        </li>
+        <li nz-submenu>
+          <span title><i class="anticon anticon-notification"></i><span>subnav 3</span></span>
+          <ul>
+            <li nz-menu-item>option9</li>
+            <li nz-menu-item>option10</li>
+            <li nz-menu-item>option11</li>
+            <li nz-menu-item>option12</li>
+          </ul>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout style="padding:24px">
+      <nz-content style="background:#fff; padding: 24px; min-height: 500px;">
+        <router-outlet></router-outlet>
+      </nz-content>
+      <nz-footer>Absolutely no copyright at all!</nz-footer>
+    </nz-layout>
+  </nz-layout>
+</nz-layout>

@@ -1,0 +1,7 @@
+ul {
+  display: flex;
+  align-items: center;
+}
+ul li:last-of-type {
+  margin-left: auto;
+}
