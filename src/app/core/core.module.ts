@@ -8,6 +8,7 @@ import { HeaderComponent } from './header/header.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { HelpComponent } from './help/help.component';
 import { RegisterComponent } from './register/register.component';
+import { JoinAClubComponent } from './join-a-club/join-a-club.component';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     HeaderComponent,
     HelpComponent,
-    RegisterComponent
+    RegisterComponent,
+    JoinAClubComponent
   ]
 })
 export class CoreModule { }

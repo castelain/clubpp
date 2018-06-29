@@ -1,0 +1,38 @@
+<app-header></app-header>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+  <h2>Join The club</h2>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>
+      <span>
+        username
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input id="username" formControlName="username">
+      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">Please input your name!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="clubname" nzRequired>
+        <span>
+            club name
+        </span>
+      </nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input id="clubname" formControlName="clubname">
+        <nz-form-explain *ngIf="validateForm.get('clubname').dirty && validateForm.get('clubname').errors">Please input the clubname!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item>
+      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="extra">extra information</nz-form-label>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <textarea row="4" nz-input formControlName="extra"></textarea>
+        <nz-form-explain *ngIf="validateForm.get('extra').dirty && validateForm.get('extra').errors">The input is not valid extra!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <button nz-button nzType="primary" type="submit">Join now</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

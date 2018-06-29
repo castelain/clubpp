@@ -1,0 +1,20 @@
+[nz-form] {
+      max-width: 600px;
+}
+[nz-form] {
+  max-width: 600px;
+}
+h2 {
+text-align: center;
+font-size: xx-large;
+}
+form {
+max-width: 500px;
+margin: 20px auto;
+border: 1px solid #99999969;
+padding: 10px;
+border-radius: 4px;
+}
+button {
+width: 100%;
+}

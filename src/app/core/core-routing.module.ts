@@ -4,6 +4,7 @@ import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HelpComponent } from './help/help.component';
+import { JoinAClubComponent } from './join-a-club/join-a-club.component';
 
 const coreRoutes: Routes = [
   {
@@ -28,6 +29,10 @@ const coreRoutes: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'join-a-club',
+    component: JoinAClubComponent
   }
 ];
 
