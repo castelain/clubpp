@@ -9,6 +9,7 @@ import { CoreRoutingModule } from './core-routing.module';
 import { HelpComponent } from './help/help.component';
 import { RegisterComponent } from './register/register.component';
 import { JoinAClubComponent } from './join-a-club/join-a-club.component';
+import { BackTopComponent } from './back-top/back-top.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { JoinAClubComponent } from './join-a-club/join-a-club.component';
     HeaderComponent,
     HelpComponent,
     RegisterComponent,
-    JoinAClubComponent
+    JoinAClubComponent,
+    BackTopComponent
   ]
 })
 export class CoreModule { }
