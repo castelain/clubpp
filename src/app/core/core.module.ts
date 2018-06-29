@@ -5,9 +5,9 @@ import { NgZorroAntdModule } from 'ng-zorro-antd';
 import { LoginComponent } from './login/login.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from './header/header.component';
-import { RegisterComponent } from './register/register.component';
 import { CoreRoutingModule } from './core-routing.module';
 import { HelpComponent } from './help/help.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   imports: [
@@ -21,8 +21,8 @@ import { HelpComponent } from './help/help.component';
     HomeComponent,
     LoginComponent,
     HeaderComponent,
-    RegisterComponent,
-    HelpComponent
+    HelpComponent,
+    RegisterComponent
   ]
 })
 export class CoreModule { }
