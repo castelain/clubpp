@@ -14,20 +14,25 @@ import {
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
+  gender = 'male';
+  bio = '';
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      email            : [ null, [ Validators.email ] ],
+      nikename         : [ null, [ Validators.required ] ],
+      name             : [ null, [Validators.required] ],
       password         : [ null, [ Validators.required ] ],
       checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
-      nickname         : [ null, [ Validators.required ] ],
+      email            : [ null, [ Validators.email ] ],
+      day_of_birth     : [ null, [ Validators.required ] ],
+      academy          : [ null, [ Validators.required ] ],
+      major            : [ null, [ Validators.required ] ],
       phoneNumberPrefix: [ '+86' ],
       phoneNumber      : [ null, [ Validators.required ] ],
-      website          : [ null, [ Validators.required ] ],
-      captcha          : [ null, [ Validators.required ] ],
+      month_of_enrollment: [ null, [ Validators.required ] ],
       agree            : [ false ]
     });
   }
@@ -52,8 +57,8 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  getCaptcha(e: MouseEvent): void {
-    e.preventDefault();
-  }
+  // getCaptcha(e: MouseEvent): void {
+  //   e.preventDefault();
+  // }
 
 }

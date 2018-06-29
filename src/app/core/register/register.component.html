@@ -50,9 +50,39 @@
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
-        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>DatePicker</nz-form-label>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Day of Birth</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24">
-          <nz-date-picker formControlName="datePicker"></nz-date-picker>
+          <nz-date-picker formControlName="day_of_birth"></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Gender</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-radio-group [(ngModel)]="gender">
+            <label nz-radio nzValue="male">male</label>
+            <label nz-radio nzValue="female">female</label>
+          </nz-radio-group>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="academy">academy</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="academy" id="academy">
+          <nz-form-explain *ngIf="validateForm.get('academy').dirty && validateForm.get('academy').errors">The input is not valid academy!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="major">major</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <input nz-input formControlName="major" id="major">
+          <nz-form-explain *ngIf="validateForm.get('major').dirty && validateForm.get('major').errors">The input is not valid major!</nz-form-explain>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+          <textarea row="4" nz-input [(ngModel)]="bio"></textarea>
+          <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
         </nz-form-control>
       </nz-form-item>
       <nz-form-item>
@@ -70,7 +100,12 @@
           <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">Please input your phone number!</nz-form-explain>
         </nz-form-control>
       </nz-form-item>
-
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Month of Enrollment</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-month-picker formControlName="month_of_enrollment"></nz-month-picker>
+        </nz-form-control>
+      </nz-form-item>
       <nz-form-item nz-row style="margin-bottom:8px;">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
           <label nz-checkbox formControlName="agree">
