@@ -1,4 +1,5 @@
-
+<app-header></app-header>
+<h2>Register</h2>
     <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
@@ -10,7 +11,9 @@
           </span>
         </nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
-          <input nz-input id="nickname" formControlName="nickname">
+          <nz-input-group>
+            <input nz-input id="nickname" formControlName="nickname">
+          </nz-input-group>
           <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors">Please input your nickname!</nz-form-explain>
         </nz-form-control>
       </nz-form-item>
@@ -58,7 +61,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>Gender</nz-form-label>
         <nz-form-control [nzSm]="16" [nzXs]="24">
-          <nz-radio-group [(ngModel)]="gender">
+          <nz-radio-group  formControlName="gender">
             <label nz-radio nzValue="male">male</label>
             <label nz-radio nzValue="female">female</label>
           </nz-radio-group>
@@ -81,7 +84,7 @@
       <nz-form-item>
         <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
         <nz-form-control [nzSm]="14" [nzXs]="24">
-          <textarea row="4" nz-input [(ngModel)]="bio"></textarea>
+          <textarea row="4" nz-input formControlName="bio"></textarea>
           <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
         </nz-form-control>
       </nz-form-item>
@@ -115,7 +118,7 @@
       </nz-form-item>
       <nz-form-item nz-row style="margin-bottom:8px;">
         <nz-form-control [nzSpan]="14" [nzOffset]="6">
-          <button nz-button nzType="primary">Register</button>
+          <button nz-button nzType="primary" type="submit">Register</button>
         </nz-form-control>
       </nz-form-item>
     </form>

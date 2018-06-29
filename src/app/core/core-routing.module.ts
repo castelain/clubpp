@@ -11,10 +11,6 @@ const coreRoutes: Routes = [
     component: HomeComponent,
     children: [
       {
-        path: 'register',
-        component: RegisterComponent
-      },
-      {
         path: 'help',
         component: HelpComponent
       }
@@ -28,6 +24,10 @@ const coreRoutes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'register',
+    component: RegisterComponent
   }
 ];
 

@@ -9,30 +9,29 @@ import {
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
-
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
-  gender = 'male';
-  bio = '';
 
   constructor(private fb: FormBuilder) {
   }
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      nikename         : [ null, [ Validators.required ] ],
-      name             : [ null, [Validators.required] ],
+      nickname         : [ null, [ Validators.required ] ],
+      name             : [ null, [ Validators.required] ],
       password         : [ null, [ Validators.required ] ],
       checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
       email            : [ null, [ Validators.email ] ],
       day_of_birth     : [ null, [ Validators.required ] ],
       academy          : [ null, [ Validators.required ] ],
       major            : [ null, [ Validators.required ] ],
+      gender           : [ 'male', Validators.required ],
       phoneNumberPrefix: [ '+86' ],
       phoneNumber      : [ null, [ Validators.required ] ],
       month_of_enrollment: [ null, [ Validators.required ] ],
+      bio              : [ null, [ Validators.required ] ],
       agree            : [ false ]
     });
   }
