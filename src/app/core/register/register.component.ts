@@ -15,6 +15,23 @@ import {
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
 
+  constructor(private fb: FormBuilder) {
+  }
+
+  ngOnInit(): void {
+    this.validateForm = this.fb.group({
+      email            : [ null, [ Validators.email ] ],
+      password         : [ null, [ Validators.required ] ],
+      checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
+      nickname         : [ null, [ Validators.required ] ],
+      phoneNumberPrefix: [ '+86' ],
+      phoneNumber      : [ null, [ Validators.required ] ],
+      website          : [ null, [ Validators.required ] ],
+      captcha          : [ null, [ Validators.required ] ],
+      agree            : [ false ]
+    });
+  }
+
   submitForm(): void {
     for (const i of Object.keys(this.validateForm.controls)) {
       this.validateForm.controls[ i ].markAsDirty();
@@ -39,20 +56,4 @@ export class RegisterComponent implements OnInit {
     e.preventDefault();
   }
 
-  constructor(private fb: FormBuilder) {
-  }
-
-  ngOnInit(): void {
-    this.validateForm = this.fb.group({
-      email            : [ null, [ Validators.email ] ],
-      password         : [ null, [ Validators.required ] ],
-      checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
-      nickname         : [ null, [ Validators.required ] ],
-      phoneNumberPrefix: [ '+86' ],
-      phoneNumber      : [ null, [ Validators.required ] ],
-      website          : [ null, [ Validators.required ] ],
-      captcha          : [ null, [ Validators.required ] ],
-      agree            : [ false ]
-    });
-  }
 }
