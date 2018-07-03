@@ -20,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      nickname         : [ null, [ Validators.required ] , [ this.nicknameAsyncValidator ] ],
+      nickname         : [ 'jasmine is a duplicated nickname', [ Validators.required ] , [ this.nicknameAsyncValidator ] ],
       name             : [ null, [ Validators.required] ],
       password         : [ null, [ Validators.required ] ],
       checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
