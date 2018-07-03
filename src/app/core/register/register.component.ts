@@ -60,7 +60,7 @@ export class RegisterComponent implements OnInit {
   // 动态验证用户输入的昵称是否重名
   nicknameAsyncValidator = (control) => Observable.create((observer) => {
     setTimeout(() => {
-      // 如果登录邮箱已被注册，则提示用户
+      // 如果该昵称已被注册，则提示用户
       if (control.value === 'jasmine') {
         observer.next({ error: true, duplicated: true });
       } else {

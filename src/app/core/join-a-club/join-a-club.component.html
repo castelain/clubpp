@@ -1,15 +1,25 @@
 <app-header></app-header>
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
   <h2>Join The club</h2>
   <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="username" nzRequired>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
       <span>
-        username
+        nickname
       </span>
     </nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input id="username" formControlName="username">
-      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">Please input your name!</nz-form-explain>
+      <input nz-input id="nickname" formControlName="nickname">
+      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors || validateForm.get('nickname').pending ">
+        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">
+          Please input your nickname!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('nickname').hasError('invalid')">
+          The nickname is invalid!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('nickname').pending">
+          Validating...
+        </ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -20,19 +30,29 @@
       </nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
         <input nz-input id="clubname" formControlName="clubname">
-        <nz-form-explain *ngIf="validateForm.get('clubname').dirty && validateForm.get('clubname').errors">Please input the clubname!</nz-form-explain>
+        <nz-form-explain *ngIf="validateForm.get('clubname').dirty && validateForm.get('clubname').errors || validateForm.get('clubname').pending ">
+          <ng-container *ngIf="validateForm.get('clubname').hasError('required')">
+            Please input your clubname!
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('clubname').hasError('invalid')">
+            The clubname is invalid!
+          </ng-container>
+          <ng-container *ngIf="validateForm.get('clubname').pending">
+            Validating...
+          </ng-container>
+        </nz-form-explain>
       </nz-form-control>
     </nz-form-item>
   <nz-form-item>
       <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="extra">extra information</nz-form-label>
       <nz-form-control [nzSm]="14" [nzXs]="24">
-        <textarea row="4" nz-input formControlName="extra"></textarea>
+        <textarea row="4" nz-input formControlName="extra"  placeholder="optional information"></textarea>
         <nz-form-explain *ngIf="validateForm.get('extra').dirty && validateForm.get('extra').errors">The input is not valid extra!</nz-form-explain>
       </nz-form-control>
     </nz-form-item>
   <nz-form-item nz-row style="margin-bottom:8px;">
     <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary" type="submit">Join now</button>
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Join now</button>
     </nz-form-control>
   </nz-form-item>
 </form>
