@@ -5,6 +5,7 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
-      nickname         : [ null, [ Validators.required ] ],
+      nickname         : [ null, [ Validators.required ] , [ this.nicknameAsyncValidator ] ],
       name             : [ null, [ Validators.required] ],
       password         : [ null, [ Validators.required ] ],
       checkPassword    : [ null, [ Validators.required, this.confirmationValidator ] ],
@@ -56,8 +57,17 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  // getCaptcha(e: MouseEvent): void {
-  //   e.preventDefault();
-  // }
+  // 动态验证用户输入的昵称是否重名
+  nicknameAsyncValidator = (control) => Observable.create((observer) => {
+    setTimeout(() => {
+      // 如果登录邮箱已被注册，则提示用户
+      if (control.value === 'jasmine') {
+        observer.next({ error: true, duplicated: true });
+      } else {
+        observer.next(null);
+      }
+      observer.complete();
+    }, 1000);
+  })
 
 }
