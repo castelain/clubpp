@@ -1,135 +1,144 @@
 <app-header></app-header>
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
-  <h2>Update user information</h2>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
-      <span>
-        Nickname
-        <nz-tooltip nzTitle="What do you want other to call you">
-          <i nz-tooltip class="anticon anticon-question-circle-o"></i>
-        </nz-tooltip>
-      </span>
-    </nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <nz-input-group>
-        <input nz-input id="nickname" formControlName="nickname">
-      </nz-input-group>
-      <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors || validateForm.get('nickname').pending ">
-        <ng-container *ngIf="validateForm.get('nickname').hasError('required')">
-          Please input your nickname!
-        </ng-container>
-        <ng-container *ngIf="validateForm.get('nickname').hasError('duplicated')">
-          The nickname is redundant!
-        </ng-container>
-        <ng-container *ngIf="validateForm.get('nickname').pending">
-          Validating...
-        </ng-container>
-      </nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">name</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="name" id="name">
-      <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">The input is not valid name!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()">
-      <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input type="password" formControlName="checkPassword" id="checkPassword">
-      <nz-form-explain *ngIf="validateForm.get('checkPassword').dirty && validateForm.get('checkPassword').errors">
-        <ng-container *ngIf="validateForm.get('checkPassword').hasError('required')">
-          Please confirm your password!
-        </ng-container>
-        <ng-container *ngIf="validateForm.get('checkPassword').hasError('confirm')">
-          Two passwords that you enter is inconsistent!
-        </ng-container>
-      </nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="email" id="email">
-      <nz-form-explain *ngIf="validateForm.get('email').dirty && validateForm.get('email').errors">The input is not valid E-mail!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="academy">academy</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="academy" id="academy">
-      <nz-form-explain *ngIf="validateForm.get('academy').dirty && validateForm.get('academy').errors">The input is not valid academy!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="major">major</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <input nz-input formControlName="major" id="major">
-      <nz-form-explain *ngIf="validateForm.get('major').dirty && validateForm.get('major').errors">The input is not valid major!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
-      <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
-        <ng-template #addOnBeforeTemplate>
-          <nz-select formControlName="phoneNumberPrefix" style="width: 70px;">
-            <nz-option nzLabel="+86" nzValue="+86"></nz-option>
-            <nz-option nzLabel="+87" nzValue="+87"></nz-option>
-          </nz-select>
-        </ng-template>
-        <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
-      </nz-input-group>
-      <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">Please input your phone number!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
-    <nz-form-control [nzSm]="14" [nzXs]="24">
-      <textarea row="4" nz-input formControlName="bio"></textarea>
-      <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Month of Enrollment</nz-form-label>
-    <nz-form-control [nzSm]="16" [nzXs]="24">
-      <nz-month-picker formControlName="month_of_enrollment"></nz-month-picker>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Day of Birth</nz-form-label>
-      <nz-form-control [nzSm]="14" [nzXs]="24">
-        <nz-date-picker formControlName="day_of_birth"></nz-date-picker>
-      </nz-form-control>
-    </nz-form-item>
-    <nz-form-item>
-      <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Gender</nz-form-label>
-      <nz-form-control [nzSm]="16" [nzXs]="24">
-        <nz-radio-group  formControlName="gender">
-          <label nz-radio nzValue="male">male</label>
-          <label nz-radio nzValue="female">female</label>
-        </nz-radio-group>
-      </nz-form-control>
-    </nz-form-item>
-  <nz-form-item nz-row style="margin-bottom:8px;">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <label nz-checkbox formControlName="agree">
-        <span>I have read the <a>agreement</a></span>
-      </label>
-    </nz-form-control>
-  </nz-form-item>
-  <nz-form-item nz-row style="margin-bottom:8px;">
-    <nz-form-control [nzSpan]="14" [nzOffset]="6">
-      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit changes</button>
-    </nz-form-control>
-  </nz-form-item>
-</form>
+<div class="gutter-example">
+  <div nz-row nzGutter="16">
+    <div nz-col class="gutter-row" nzSpan="8">
+      <app-img-upload></app-img-upload>
+    </div>
+    <div nz-col class="gutter-row" nzSpan="16">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+        <h2>Update user information</h2>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="nickname" nzRequired>
+            <span>
+              Nickname
+              <nz-tooltip nzTitle="What do you want other to call you">
+                <i nz-tooltip class="anticon anticon-question-circle-o"></i>
+              </nz-tooltip>
+            </span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-input-group>
+              <input nz-input id="nickname" formControlName="nickname">
+            </nz-input-group>
+            <nz-form-explain *ngIf="validateForm.get('nickname').dirty && validateForm.get('nickname').errors || validateForm.get('nickname').pending ">
+              <ng-container *ngIf="validateForm.get('nickname').hasError('required')">
+                Please input your nickname!
+              </ng-container>
+              <ng-container *ngIf="validateForm.get('nickname').hasError('duplicated')">
+                The nickname is redundant!
+              </ng-container>
+              <ng-container *ngIf="validateForm.get('nickname').pending">
+                Validating...
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">name</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="name" id="name">
+            <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">The input is not valid name!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input type="password" id="password" formControlName="password" (ngModelChange)="updateConfirmValidator()">
+            <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">Please input your password!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="checkPassword" nzRequired>Confirm Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input type="password" formControlName="checkPassword" id="checkPassword">
+            <nz-form-explain *ngIf="validateForm.get('checkPassword').dirty && validateForm.get('checkPassword').errors">
+              <ng-container *ngIf="validateForm.get('checkPassword').hasError('required')">
+                Please confirm your password!
+              </ng-container>
+              <ng-container *ngIf="validateForm.get('checkPassword').hasError('confirm')">
+                Two passwords that you enter is inconsistent!
+              </ng-container>
+            </nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="email" id="email">
+            <nz-form-explain *ngIf="validateForm.get('email').dirty && validateForm.get('email').errors">The input is not valid E-mail!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="academy">academy</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="academy" id="academy">
+            <nz-form-explain *ngIf="validateForm.get('academy').dirty && validateForm.get('academy').errors">The input is not valid academy!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="major">major</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="major" id="major">
+            <nz-form-explain *ngIf="validateForm.get('major').dirty && validateForm.get('major').errors">The input is not valid major!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="phoneNumber" nzRequired>Phone Number</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" [nzValidateStatus]="validateForm.controls['phoneNumber']">
+            <nz-input-group [nzAddOnBefore]="addOnBeforeTemplate">
+              <ng-template #addOnBeforeTemplate>
+                <nz-select formControlName="phoneNumberPrefix" style="width: 70px;">
+                  <nz-option nzLabel="+86" nzValue="+86"></nz-option>
+                  <nz-option nzLabel="+87" nzValue="+87"></nz-option>
+                </nz-select>
+              </ng-template>
+              <input formControlName="phoneNumber" id="'phoneNumber'" nz-input>
+            </nz-input-group>
+            <nz-form-explain *ngIf="validateForm.get('phoneNumber').dirty && validateForm.get('phoneNumber').errors">Please input your phone number!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24">
+            <textarea row="4" nz-input formControlName="bio"></textarea>
+            <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Month of Enrollment</nz-form-label>
+          <nz-form-control [nzSm]="16" [nzXs]="24">
+            <nz-month-picker formControlName="month_of_enrollment"></nz-month-picker>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Day of Birth</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <nz-date-picker formControlName="day_of_birth"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>Gender</nz-form-label>
+            <nz-form-control [nzSm]="16" [nzXs]="24">
+              <nz-radio-group  formControlName="gender">
+                <label nz-radio nzValue="male">male</label>
+                <label nz-radio nzValue="female">female</label>
+              </nz-radio-group>
+            </nz-form-control>
+          </nz-form-item>
+        <nz-form-item nz-row style="margin-bottom:8px;">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <label nz-checkbox formControlName="agree">
+              <span>I have read the <a>agreement</a></span>
+            </label>
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row style="margin-bottom:8px;">
+          <nz-form-control [nzSpan]="14" [nzOffset]="6">
+            <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit changes</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+
 <app-back-top></app-back-top>

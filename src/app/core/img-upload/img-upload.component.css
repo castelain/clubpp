@@ -1,0 +1,24 @@
+
+  :host ::ng-deep .avatar-uploader > .ant-upload {
+    width: 128px;
+    height: 128px;
+  }
+  :host ::ng-deep .ant-upload-select-picture-card i {
+    font-size: 32px;
+    color: #999;
+  }
+  :host ::ng-deep .ant-upload-select-picture-card .ant-upload-text {
+    margin-top: 8px;
+    color: #666;
+  }
+  img{
+    width: 200px;
+    height: 200px;
+  }
+#img-content{
+  float: right;
+  margin-top: 20px;
+}
+div{
+  margin-bottom: 20px;
+}

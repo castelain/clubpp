@@ -1,0 +1,18 @@
+
+<div id="img-content">
+  <nz-upload class="avatar-uploader"
+    nzAction="https://jsonplaceholder.typicode.com/posts/"
+    nzName="avatar"
+    nzListType="picture-card"
+    [nzShowUploadList]="false"
+    [nzBeforeUpload]="beforeUpload"
+    (nzChange)="handleChange($event)" title="Click on the avatar to change the avatar">
+    <ng-container *ngIf="!avatarUrl">
+      <i class="anticon anticon-plus"></i>
+      <div class="ant-upload-text">Upload</div>
+    </ng-container>
+    <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar">
+    <p>Your avator</p>
+  </nz-upload>
+  <!-- {{avatarUrl}} -->
+</div>

@@ -12,6 +12,7 @@ import { JoinAClubComponent } from './join-a-club/join-a-club.component';
 import { BackTopComponent } from './back-top/back-top.component';
 import { CreateAClubComponent } from './create-a-club/create-a-club.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { ImgUploadComponent } from './img-upload/img-upload.component';
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import { UpdateUserComponent } from './update-user/update-user.component';
     JoinAClubComponent,
     BackTopComponent,
     CreateAClubComponent,
-    UpdateUserComponent
+    UpdateUserComponent,
+    ImgUploadComponent
   ]
 })
 export class CoreModule { }
