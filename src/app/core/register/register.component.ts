@@ -5,7 +5,9 @@ import {
   FormGroup,
   Validators
 } from '@angular/forms';
+
 import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-register',
@@ -14,6 +16,7 @@ import { Observable } from 'rxjs';
 })
 export class RegisterComponent implements OnInit {
   validateForm: FormGroup;
+
 
   constructor(private fb: FormBuilder) {
   }
@@ -49,12 +52,14 @@ export class RegisterComponent implements OnInit {
     Promise.resolve().then(() => this.validateForm.controls.checkPassword.updateValueAndValidity());
   }
 
+
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
     if (!control.value) {
       return { required: true };
     } else if (control.value !== this.validateForm.controls.password.value) {
       return { confirm: true, error: true };
     }
+
   }
 
   // 动态验证用户输入的昵称是否重名

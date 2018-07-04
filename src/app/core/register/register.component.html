@@ -1,3 +1,4 @@
+
 <app-header></app-header>
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
   <h2>Register</h2>
@@ -34,6 +35,7 @@
       <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">The input is not valid name!</nz-form-explain>
     </nz-form-control>
   </nz-form-item>
+
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
@@ -55,6 +57,7 @@
       </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
+  
   <nz-form-item>
     <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="email">E-mail</nz-form-label>
     <nz-form-control [nzSm]="14" [nzXs]="24">
