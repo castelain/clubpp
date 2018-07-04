@@ -7,7 +7,7 @@ import {
   ValidationErrors,
   Validators
 } from '@angular/forms';
-import { Observable, Observer } from 'rxjs';
+import { Observable, Observer, observable } from 'rxjs';
 
 @Component({
   selector: 'app-create-a-club',
@@ -35,10 +35,6 @@ export class CreateAClubComponent {
     }
   }
 
-  validateConfirmPassword(): void {
-    setTimeout(() => this.validateForm.controls.confirm.updateValueAndValidity());
-  }
-
   clubnameAsyncValidator = (control: FormControl) => Observable.create((observer: Observer<ValidationErrors>) => {
     setTimeout(() => {
       if (control.value === 'xxx-club') {
@@ -49,14 +45,6 @@ export class CreateAClubComponent {
       observer.complete();
     }, 1000);
   })
-
-  confirmValidator = (control: FormControl): { [ s: string ]: boolean } => {
-    if (!control.value) {
-      return { required: true };
-    } else if (control.value !== this.validateForm.controls.password.value) {
-      return { confirm: true, error: true };
-    }
-  }
 
   // 动态验证用户输入的昵称是否有效
   nicknameAsyncValidator = (control) => Observable.create((observer) => {
@@ -71,14 +59,38 @@ export class CreateAClubComponent {
     }, 1000);
   })
 
+  // 动态验证输入的标签是否是以逗号分隔的
+  tagsAsyncValidator = (control) => Observable.create((observer) => {
+    setTimeout(() => {
+      if ((control.value.split(',')).length < 2 && (control.value.split('，')).length < 2) {
+        observer.next({ error: true, noCommas: true});
+      } else {
+        observer.next(null);
+      }
+      observer.complete();
+    }, 1000);
+  })
+
+  // 动态验证输入的地址是否是以逗号分隔的
+  addressAsyncValidator = (control) => Observable.create((observer) => {
+    setTimeout(() => {
+      if ((control.value.split(',')).length < 2 && (control.value.split('，')).length < 2) {
+        observer.next({ error: true, noCommas: true});
+      } else {
+        observer.next(null);
+      }
+      observer.complete();
+    }, 1000);
+  })
+
   constructor(private fb: FormBuilder) {
     this.validateForm = this.fb.group({
       clubname: [ 'xxx-club is a duplicated club name', [ Validators.required ], [ this.clubnameAsyncValidator ] ],
       master  : [ 'jasmine is a valid nickname of master', [ Validators.required ], [ this.nicknameAsyncValidator] ],
-      created_time: [ null ],
+      created_time: [ null, [ Validators.required ] ],
       member_number: [ '', [ Validators.required ] ],
-      tags : [ '', [ Validators.required ] ],
-      addresses: ['', [ Validators.required ]],
+      tags : [ '', [ Validators.required ], [ this.tagsAsyncValidator ] ],
+      addresses: ['', [ Validators.required ], [ this.addressAsyncValidator ]],
       bio  : ['', [ Validators.required ]]
     });
   }

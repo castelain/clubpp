@@ -43,14 +43,34 @@
     <nz-form-label [nzSpan]="7" nzRequired>tags</nz-form-label>
     <nz-form-control [nzSpan]="12" >
       <textarea formControlName="tags" nz-input rows="2" placeholder="tags must be separated by commas"></textarea>
-      <nz-form-explain *ngIf="validateForm.get('tags').dirty&&validateForm.get('tags').hasError('required')">Please write tags here!</nz-form-explain>
+      <nz-form-explain *ngIf="validateForm.get('tags').dirty && validateForm.get('tags').errors || validateForm.get('tags').pending ">
+        <ng-container *ngIf="validateForm.get('tags').hasError('required')">
+          Please input the tags!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('tags').hasError('noCommas')">
+          Tags must be separated by commas!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('tags').pending">
+          Validating...
+        </ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
     <nz-form-label [nzSpan]="7" nzRequired>addresses</nz-form-label>
     <nz-form-control [nzSpan]="12" >
       <textarea formControlName="addresses" nz-input rows="2" placeholder="addresses must be separated by commas"></textarea>
-      <nz-form-explain *ngIf="validateForm.get('addresses').dirty&&validateForm.get('addresses').hasError('required')">Please write addresses here!</nz-form-explain>
+      <nz-form-explain *ngIf="validateForm.get('addresses').dirty && validateForm.get('addresses').errors || validateForm.get('addresses').pending ">
+        <ng-container *ngIf="validateForm.get('addresses').hasError('required')">
+          Addresses must be separated by commas!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('addresses').hasError('noCommas')">
+          addresses must be separated by commas!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('addresses').pending">
+          Validating...
+        </ng-container>
+      </nz-form-explain>
     </nz-form-control>
   </nz-form-item>
   <nz-form-item>
@@ -68,7 +88,7 @@
   </nz-form-item>
   <nz-form-item>
     <nz-form-control [nzOffset]="7" [nzSpan]="12">
-      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      <button nz-button nzType="primary">Submit</button>
       <button nz-button (click)="resetForm($event)">Reset</button>
     </nz-form-control>
   </nz-form-item>
