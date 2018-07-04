@@ -6,13 +6,13 @@
     nzListType="picture-card"
     [nzShowUploadList]="false"
     [nzBeforeUpload]="beforeUpload"
-    (nzChange)="handleChange($event)" title="Click on the avatar to change the avatar">
-    <ng-container *ngIf="!avatarUrl">
+    (nzChange)="handleChange($event)">
+    <ng-container *ngIf="!imgUrl">
       <i class="anticon anticon-plus"></i>
       <div class="ant-upload-text">Upload</div>
     </ng-container>
-    <img *ngIf="avatarUrl" [src]="avatarUrl" class="avatar">
-    <p>Your avator</p>
+    <img *ngIf="imgUrl" [src]="imgUrl" class="avatar">
+    <p>Your picture</p>
   </nz-upload>
   <!-- {{avatarUrl}} -->
 </div>

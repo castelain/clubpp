@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class UpdateUserComponent implements OnInit {
   validateForm: FormGroup;
+  imgUrl = '';
 
   constructor(private fb: FormBuilder) {
   }
@@ -33,7 +34,7 @@ export class UpdateUserComponent implements OnInit {
       phoneNumber      : [ null, [ Validators.required ] ],
       month_of_enrollment: [ null, [ Validators.required ] ],
       bio              : [ null, [ Validators.required ] ],
-      agree            : [ false ]
+      agree            : [ false ],
     });
   }
 
@@ -69,5 +70,10 @@ export class UpdateUserComponent implements OnInit {
       observer.complete();
     }, 1000);
   })
+
+  // 获取更改后的图片地址
+  getImgUrl(imgUrl) {
+    this.imgUrl = imgUrl;
+  }
 
 }

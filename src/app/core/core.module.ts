@@ -13,6 +13,7 @@ import { BackTopComponent } from './back-top/back-top.component';
 import { CreateAClubComponent } from './create-a-club/create-a-club.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
 import { ImgUploadComponent } from './img-upload/img-upload.component';
+import { EditAClubComponent } from './edit-a-club/edit-a-club.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,8 @@ import { ImgUploadComponent } from './img-upload/img-upload.component';
     BackTopComponent,
     CreateAClubComponent,
     UpdateUserComponent,
-    ImgUploadComponent
+    ImgUploadComponent,
+    EditAClubComponent
   ]
 })
 export class CoreModule { }

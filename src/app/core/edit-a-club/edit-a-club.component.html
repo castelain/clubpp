@@ -1,0 +1,108 @@
+<app-header></app-header>
+<div class="gutter-example">
+  <div nz-row nzGutter="16">
+    <div nz-col class="gutter-row" nzSpan="8">
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
+    </div>
+    {{imgUrls}}
+    <div nz-col class="gutter-row" nzSpan="16">
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+          <h2>Edit a club</h2>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>Clubname</nz-form-label>
+            <nz-form-control [nzSpan]="12" nzHasFeedback>
+              <input nz-input formControlName="clubname">
+              <nz-form-explain *ngIf="validateForm.get('clubname').dirty && validateForm.get('clubname').errors || validateForm.get('clubname').pending ">
+                <ng-container *ngIf="validateForm.get('clubname').hasError('required')">
+                  Please input your clubname!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('clubname').hasError('duplicated')">
+                  The clubname is redundant!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('clubname').pending">
+                  Validating...
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="master" nzRequired>
+              <span>
+                master's nickname
+              </span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="13" [nzXs]="24">
+              <input nz-input id="master" formControlName="master">
+              <nz-form-explain *ngIf="validateForm.get('master').dirty && validateForm.get('master').errors || validateForm.get('master').pending ">
+                <ng-container *ngIf="validateForm.get('master').hasError('required')">
+                  Please input the master!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('master').hasError('invalid')">
+                  The master is invalid!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('master').pending">
+                  Validating...
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>tags</nz-form-label>
+            <nz-form-control [nzSpan]="12" >
+              <textarea formControlName="tags" nz-input rows="2" placeholder="tags must be separated by commas"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('tags').dirty && validateForm.get('tags').errors || validateForm.get('tags').pending ">
+                <ng-container *ngIf="validateForm.get('tags').hasError('required')">
+                  Please input the tags!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('tags').hasError('noCommas')">
+                  Tags must be separated by commas!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('tags').pending">
+                  Validating...
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSpan]="7" nzRequired>addresses</nz-form-label>
+            <nz-form-control [nzSpan]="12" >
+              <textarea formControlName="addresses" nz-input rows="2" placeholder="addresses must be separated by commas"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('addresses').dirty && validateForm.get('addresses').errors || validateForm.get('addresses').pending ">
+                <ng-container *ngIf="validateForm.get('addresses').hasError('required')">
+                  Addresses must be separated by commas!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('addresses').hasError('noCommas')">
+                  addresses must be separated by commas!
+                </ng-container>
+                <ng-container *ngIf="validateForm.get('addresses').pending">
+                  Validating...
+                </ng-container>
+              </nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
+            <nz-form-control [nzSm]="13" [nzXs]="24">
+              <textarea row="4" nz-input formControlName="bio"></textarea>
+              <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>created time</nz-form-label>
+            <nz-form-control [nzSm]="12" [nzXs]="24">
+              <nz-date-picker nzshowTime formControlName="created_time"></nz-date-picker>
+            </nz-form-control>
+          </nz-form-item>
+          <nz-form-item>
+            <nz-form-control [nzOffset]="7" [nzSpan]="12">
+              <button nz-button nzType="primary">Submit</button>
+              <button nz-button (click)="resetForm($event)">Reset</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+    </div>
+  </div>
+
+<app-back-top></app-back-top>

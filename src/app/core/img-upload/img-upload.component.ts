@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NzMessageService, UploadFile } from 'ng-zorro-antd';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-img-upload',
@@ -8,8 +9,9 @@ import { NzMessageService, UploadFile } from 'ng-zorro-antd';
 })
 export class ImgUploadComponent {
   loading = false;
-  // 头像地址
-  avatarUrl = 'http://ozkbl6lk3.bkt.clouddn.com/18-7-4/83972010.jpg';
+  // 图片地址
+  imgUrl = 'http://ozkbl6lk3.bkt.clouddn.com/18-7-4/83972010.jpg';
+  @Output() postImgUrl = new EventEmitter();
 
   constructor(private msg: NzMessageService) {}
 
@@ -40,8 +42,10 @@ export class ImgUploadComponent {
       // Get this url from response in real world.
       this.getBase64(info.file.originFileObj, (img: string) => {
         this.loading = false;
-        this.avatarUrl = img;
+        this.imgUrl = img;
+        this.postImgUrl.emit(this.imgUrl);
       });
     }
   }
+
 }

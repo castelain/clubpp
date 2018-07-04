@@ -7,6 +7,7 @@ import { HelpComponent } from './help/help.component';
 import { JoinAClubComponent } from './join-a-club/join-a-club.component';
 import { CreateAClubComponent } from './create-a-club/create-a-club.component';
 import { UpdateUserComponent } from './update-user/update-user.component';
+import { EditAClubComponent } from './edit-a-club/edit-a-club.component';
 
 
 const coreRoutes: Routes = [
@@ -44,6 +45,10 @@ const coreRoutes: Routes = [
   {
     path: 'update-user',
     component: UpdateUserComponent
+  },
+  {
+    path: 'edit-a-club',
+    component: EditAClubComponent
   }
 ];
 
