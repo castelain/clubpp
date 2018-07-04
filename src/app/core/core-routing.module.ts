@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HelpComponent } from './help/help.component';
 import { JoinAClubComponent } from './join-a-club/join-a-club.component';
+import { CreateAClubComponent } from './create-a-club/create-a-club.component';
+
 
 const coreRoutes: Routes = [
   {
@@ -33,6 +35,10 @@ const coreRoutes: Routes = [
   {
     path: 'join-a-club',
     component: JoinAClubComponent
+  },
+  {
+    path: 'create-a-club',
+    component: CreateAClubComponent
   }
 ];
 

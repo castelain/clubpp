@@ -10,6 +10,7 @@ import { HelpComponent } from './help/help.component';
 import { RegisterComponent } from './register/register.component';
 import { JoinAClubComponent } from './join-a-club/join-a-club.component';
 import { BackTopComponent } from './back-top/back-top.component';
+import { CreateAClubComponent } from './create-a-club/create-a-club.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { BackTopComponent } from './back-top/back-top.component';
     HelpComponent,
     RegisterComponent,
     JoinAClubComponent,
-    BackTopComponent
+    BackTopComponent,
+    CreateAClubComponent
   ]
 })
 export class CoreModule { }

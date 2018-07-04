@@ -1,0 +1,75 @@
+<app-header></app-header>
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">
+  <h2>Create a club</h2>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>Clubname</nz-form-label>
+    <nz-form-control [nzSpan]="12" nzHasFeedback>
+      <input nz-input formControlName="clubname">
+      <nz-form-explain *ngIf="validateForm.get('clubname').dirty && validateForm.get('clubname').errors || validateForm.get('clubname').pending ">
+        <ng-container *ngIf="validateForm.get('clubname').hasError('required')">
+          Please input your clubname!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('clubname').hasError('duplicated')">
+          The clubname is redundant!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('clubname').pending">
+          Validating...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="master" nzRequired>
+      <span>
+        master's nickname
+      </span>
+    </nz-form-label>
+    <nz-form-control [nzSm]="13" [nzXs]="24">
+      <input nz-input id="master" formControlName="master">
+      <nz-form-explain *ngIf="validateForm.get('master').dirty && validateForm.get('master').errors || validateForm.get('master').pending ">
+        <ng-container *ngIf="validateForm.get('master').hasError('required')">
+          Please input the master!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('master').hasError('invalid')">
+          The master is invalid!
+        </ng-container>
+        <ng-container *ngIf="validateForm.get('master').pending">
+          Validating...
+        </ng-container>
+      </nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>tags</nz-form-label>
+    <nz-form-control [nzSpan]="12" >
+      <textarea formControlName="tags" nz-input rows="2" placeholder="tags must be separated by commas"></textarea>
+      <nz-form-explain *ngIf="validateForm.get('tags').dirty&&validateForm.get('tags').hasError('required')">Please write tags here!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSpan]="7" nzRequired>addresses</nz-form-label>
+    <nz-form-control [nzSpan]="12" >
+      <textarea formControlName="addresses" nz-input rows="2" placeholder="addresses must be separated by commas"></textarea>
+      <nz-form-explain *ngIf="validateForm.get('addresses').dirty&&validateForm.get('addresses').hasError('required')">Please write addresses here!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="bio">bio</nz-form-label>
+    <nz-form-control [nzSm]="13" [nzXs]="24">
+      <textarea row="4" nz-input formControlName="bio"></textarea>
+      <nz-form-explain *ngIf="validateForm.get('bio').dirty && validateForm.get('bio').errors">The input is not valid bio!</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired>created time</nz-form-label>
+    <nz-form-control [nzSm]="12" [nzXs]="24">
+      <nz-date-picker nzshowTime formControlName="created_time"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-control [nzOffset]="7" [nzSpan]="12">
+      <button nz-button nzType="primary" [disabled]="!validateForm.valid">Submit</button>
+      <button nz-button (click)="resetForm($event)">Reset</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
