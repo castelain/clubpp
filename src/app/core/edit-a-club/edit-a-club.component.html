@@ -2,9 +2,9 @@
 <div class="gutter-example">
   <div nz-row nzGutter="16">
     <div nz-col class="gutter-row" nzSpan="8">
-      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
-      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
-      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl($event)"></app-img-upload>
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl($event)"></app-img-upload>
+      <app-img-upload title="Click on the picture to update the slideshow" (postImgUrl)="getImgUrl($event)"></app-img-upload>
     </div>
     {{imgUrls}}
     <div nz-col class="gutter-row" nzSpan="16">

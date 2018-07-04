@@ -2,8 +2,8 @@
 <div class="gutter-example">
   <div nz-row nzGutter="16">
     <div nz-col class="gutter-row" nzSpan="8">
-      <app-img-upload  title="Click on the avatar to change the avatar" (postImgUrl)="getImgUrl(imgUrl)"></app-img-upload>
-      {{imgUrl}}
+      <app-img-upload  title="Click on the avatar to change the avatar" (postImgUrl)="getImgUrl($event)"></app-img-upload>
+      <!-- {{imgUrl}} -->
     </div>
     <div nz-col class="gutter-row" nzSpan="16">
       <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm($event,validateForm.value)">

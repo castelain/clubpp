@@ -18,7 +18,8 @@ import { Observable, Observer, observable } from 'rxjs';
 export class EditAClubComponent  {
   validateForm: FormGroup;
   // 图片地址数组
-  imgUrls = ['test1', 'test2'];
+  imgUrls: Array<string> = [];
+  // imgUrl = '';
 
   submitForm = ($event, value) => {
     $event.preventDefault();
@@ -99,7 +100,10 @@ export class EditAClubComponent  {
   }
 
   getImgUrl(imgUrl) {
+    // this.imgUrl = imgUrl;
     this.imgUrls.push(imgUrl);
+    // console.log(imgUrl);
+    console.log(this.imgUrls);
   }
 
 }

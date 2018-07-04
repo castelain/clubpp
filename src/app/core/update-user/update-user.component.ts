@@ -14,6 +14,7 @@ import { Observable } from 'rxjs';
 })
 export class UpdateUserComponent implements OnInit {
   validateForm: FormGroup;
+  // 上传的图片地址
   imgUrl = '';
 
   constructor(private fb: FormBuilder) {
@@ -74,6 +75,7 @@ export class UpdateUserComponent implements OnInit {
   // 获取更改后的图片地址
   getImgUrl(imgUrl) {
     this.imgUrl = imgUrl;
+    console.log(imgUrl);
   }
 
 }
